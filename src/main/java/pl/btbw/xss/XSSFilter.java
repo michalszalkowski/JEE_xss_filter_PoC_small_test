@@ -1,5 +1,8 @@
 package pl.btbw.xss;
 
+import pl.btbw.xss.wrapper.XSSJsonRequestWrapper;
+import pl.btbw.xss.wrapper.XSSRequestWrapper;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -19,7 +22,8 @@ public class XSSFilter implements Filter {
 	                     ServletResponse response,
 	                     FilterChain chain) throws IOException, ServletException {
 
-		chain.doFilter(new XSSRequestWrapper((HttpServletRequest) request), response);
+//		chain.doFilter(new XSSRequestWrapper((HttpServletRequest) request), response);
+		chain.doFilter(new XSSJsonRequestWrapper((HttpServletRequest) request), response);
 	}
 
 }

@@ -1,0 +1,29 @@
+--
+
+GET: http://localhost:8080/jee_xss_filter/rest/person/get?name=lorem<h1>lorem</h1>
+
+Success
+--
+
+POST: http://localhost:8080/jee_xss_filter/rest/person/post
+'Content-Type': 'application/x-www-form-urlencoded'
+name = lorem<script>alert(1)</script>
+
+Success
+--
+
+POST: http://localhost:8080/jee_xss_filter/rest/person/json
+'Content-Type': 'application/json;charset=utf-8'
+{"name":"michal"}
+
+Success
+--
+
+POST: http://localhost:8080/jee_xss_filter/rest/person/xml
+'Content-Type': 'application/xml;charset=utf-8'
+<person>
+<name><![CDATA[This is <b>bold</b>]]></name>
+</person>
+
+Fail
+--
